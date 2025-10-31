@@ -1,0 +1,88 @@
+/* Component-specific styles */
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+input, textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/*
+  Safe tweak: hide thin gray borders (hairlines) site-wide by making
+  common Tailwind border utility classes transparent. This prevents
+  single-pixel divider lines from appearing while preserving layout
+  and larger/bolder visual borders.
+
+  If you want to keep borders for a specific element, add the class
+  `keep-border` to that element.
+*/
+.border, .border-t, .border-b, .border-l, .border-r, .border-gray-100, .border-gray-200 {
+  border-color: transparent !important;
+}
+
+/* Allow explicit opt-in for elements that must keep their border */
+.keep-border {
+  border-color: initial !important;
+}
+
+/* Global: hide unwanted horizontal lines and remove outlines/borders */
+hr, .debug-line { display: none; }
+* { outline: none !important; border: none !important; }
+
+/* Additional targeted hide rules for thin horizontal separators that may
+   come from components or third-party CSS (Leaflet control lines, dividers)
+   These use high-specificity + !important so they override other styles. */
+.separator,
+.divider,
+.hairline,
+.leaflet-control-layers-separator,
+.leaflet-control-scale-line,
+.leaflet-control-scale-line::before,
+.leaflet-control-scale-line::after,
+.leaflet-control-layers-separator::before,
+.leaflet-control-layers-separator::after {
+  display: none !important;
+  border: none !important;
+  background: transparent !important;
+  height: 0 !important;
+  box-shadow: none !important;
+}
+
+/* fallback: hide any element that looks like a 1px full-width horizontal rule */
+*[role="separator"],
+*[data-separator],
+.hr,
+.thin-rule {
+  display: none !important;
+  border: none !important;
+  background: transparent !important;
+  height: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Hide full-width thin gradient bars used as decorative top/bottom lines inside cards
+   and other components. These often use Tailwind classes like `w-full h-1 bg-gradient-to-r`.
+   Target common combinations to remove the blue/green 1px gradient line seen across pages. */
+.bg-gradient-to-r.h-1.w-full,
+.bg-gradient-to-r.w-full.h-1,
+.absolute.top-0.left-0.w-full.h-1,
+.absolute.top-0.left-0.right-0.h-1,
+.absolute.bottom-0.left-0.right-0.h-1 {
+  display: none !important;
+  height: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}

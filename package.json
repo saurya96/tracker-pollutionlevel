@@ -1,0 +1,8 @@
+{
+  "name": "pollution-tracker-monorepo",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}
