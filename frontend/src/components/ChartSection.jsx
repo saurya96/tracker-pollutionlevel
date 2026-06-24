@@ -35,7 +35,7 @@ export default function ChartSection({ city, stationId }) {
 
   const chartData = {
     labels: history.map(h => {
-      const date = new Date(h.timestamp || h.ts)
+      const date = new Date(h.timestamp || h.ts || h.created_at)
       return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
     }),
     datasets: [

@@ -21,8 +21,17 @@ export default function Alerts() {
   const [error, setError] = useState('')
   const [saveSuccess, setSaveSuccess] = useState(false)
   const [showToast, setShowToast] = useState(false)
+  const [serviceStatus, setServiceStatus] = useState({ api: 'unknown', db: 'unknown' })
+
+  const API_BASE = import.meta.env.VITE_API_URL || '/api'
 
   useEffect(() => {
+    // Check backend and DB status
+    fetch(`${API_BASE}/health`)
+      .then(r => r.json())
+      .then(({ status, db }) => setServiceStatus({ api: status, db }))
+      .catch(() => setServiceStatus({ api: 'down', db: 'unknown' }))
+
     if (token) {
       setIsLoggedIn(true)
       const savedUser = localStorage.getItem('user')
@@ -86,7 +95,13 @@ export default function Alerts() {
       setAlertThreshold(data.user.alertThreshold)
       showSuccessToast('Registration successful! Welcome aboard! 🎉')
     } catch (err) {
-      setError('Registration failed. Email may already be in use.')
+      if (err?.status === 409) {
+        setError('Email already registered. Try logging in instead.')
+      } else if (err?.status === 503) {
+        setError('Service unavailable. Please start MongoDB and try again.')
+      } else {
+        setError(err?.message || 'Registration failed.')
+      }
     } finally {
       setLoading(false)
     }
@@ -135,6 +150,22 @@ export default function Alerts() {
   if (!isLoggedIn) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 py-12 px-4 sm:px-6 lg:px-8">
+        {/* Service Status Banner */}
+        {(serviceStatus.api !== 'ok' || serviceStatus.db !== 'connected') && (
+          <div className="max-w-3xl mx-auto mb-6">
+            <div className="p-4 rounded-xl border bg-yellow-50 border-yellow-200 text-yellow-800">
+              <div className="font-semibold mb-1">Service Notice</div>
+              <div className="text-sm">
+                Backend: <strong>{serviceStatus.api}</strong> • Database: <strong>{serviceStatus.db}</strong>.
+                {serviceStatus.db !== 'connected' && (
+                  <>
+                    {' '}Authentication features require MongoDB. Please start MongoDB locally or set MONGODB_URI, then retry.
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
         {/* Toast Notification */}
         {showToast && (
           <div className="fixed top-20 right-4 z-50 animate-fade-in-up">

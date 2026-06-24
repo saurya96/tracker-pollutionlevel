@@ -1,0 +1,592 @@
+/* ===== POLLUTION TICKER STYLES ===== */
+
+.pollution-ticker-container {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.92) 0%, rgba(16, 185, 129, 0.92) 100%);
+  color: white;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-bottom: 3px solid rgba(59, 130, 246, 0.5);
+  animation: slideDownIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(8px);
+  border-radius: 0;
+}
+
+@keyframes slideDownIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ===== MOST POLLUTED CITY ALERT ===== */
+
+.most-polluted-alert {
+  display: none;
+}
+
+.alert-content {
+  display: none;
+}
+
+.alert-main {
+  display: none;
+}
+
+.alert-text {
+  display: none;
+}
+
+.city-name {
+  display: none;
+}
+
+.aqi-badge {
+  display: none;
+}
+
+.status-badge {
+  display: none;
+}
+
+.danger-zone-badge {
+  display: none;
+}
+
+.alert-warning {
+  display: none;
+}
+
+.health-warning {
+  display: none;
+}
+
+.update-time {
+  display: none;
+}
+
+.alert-content {
+  display: none;
+}
+
+.alert-main {
+  display: none;
+}
+
+.alert-icon {
+  display: none;
+}
+
+.alert-text {
+  display: none;
+}
+
+.city-name {
+  display: none;
+}
+
+.aqi-badge {
+  display: none;
+}
+
+.status-badge {
+  display: none;
+}
+
+.danger-zone-badge {
+  display: none;
+}
+
+.alert-warning {
+  display: none;
+}
+
+.health-warning {
+  display: none;
+}
+
+.update-time {
+  display: none;
+}
+
+/* ===== SCROLLING TICKER ===== */
+
+.ticker-wrapper {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.ticker-background {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ticker-label {
+  font-size: 13px;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  white-space: nowrap;
+  min-width: fit-content;
+  margin-right: 14px;
+  padding: 12px 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.ticker-scroll {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.09);
+  padding: 12px 0;
+  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.ticker-content {
+  display: flex;
+  animation: scroll 35s linear infinite;
+  gap: 8px;
+  padding: 0 16px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-scroll:hover .ticker-content {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.12));
+  border-radius: 10px;
+  border-left: 5px solid #3b82f6;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: 15px;
+  font-weight: 800;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ticker-item:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.18));
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.ticker-icon {
+  font-size: 20px;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+.ticker-item:nth-child(2n) .ticker-icon {
+  animation-delay: 0.5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.ticker-city {
+  font-weight: 900;
+  color: #fff;
+  font-size: 16px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.ticker-aqi {
+  color: #fff;
+  font-weight: 900;
+  font-size: 16px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
+  padding: 4px 10px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+}
+
+.ticker-status {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.3);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 11px;
+}
+
+.ticker-separator {
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* ===== INFO BAR ===== */
+
+.ticker-info-bar {
+  display: none;
+}
+
+.info-item {
+  display: none;
+}
+
+.info-label {
+  display: none;
+}
+
+.info-value {
+  display: none;
+}
+
+.info-divider {
+  display: none;
+}
+
+/* ===== LOADING STATE ===== */
+
+.loading-state {
+  padding: 40px 16px;
+  text-align: center;
+}
+
+.ticker-content .loading-spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 16px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-state p {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 15px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== ERROR STATE ===== */
+
+.error-state {
+  padding: 24px 16px;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2));
+  border-bottom: 4px solid rgba(239, 68, 68, 0.6);
+  margin-bottom: 16px;
+  border-radius: 14px;
+  margin: 16px;
+}
+
+.unavailable-message {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .pollution-ticker-container {
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
+    border-radius: 0 0 8px 8px;
+  }
+
+  .ticker-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin-right: 8px;
+    padding: 8px 0;
+  }
+
+  .ticker-item {
+    padding: 6px 10px;
+    font-size: 12px;
+    gap: 6px;
+    border-radius: 6px;
+    border-left-width: 3px;
+  }
+
+  .ticker-city {
+    font-size: 12px;
+  }
+
+  .ticker-icon {
+    font-size: 14px;
+  }
+
+  .ticker-status {
+    padding: 3px 8px;
+    font-size: 10px;
+    border-radius: 8px;
+  }
+
+  .ticker-aqi {
+    font-size: 11px;
+  }
+
+  .ticker-info-bar {
+    gap: 12px;
+    padding: 8px 10px;
+  }
+
+  .info-item {
+    gap: 4px;
+  }
+
+  .info-label {
+    font-size: 9px;
+  }
+
+  .info-value {
+    font-size: 10px;
+  }
+
+  .info-divider {
+    height: 12px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .pollution-ticker-container {
+    border-bottom-width: 3px;
+  }
+
+  .ticker-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-right: 8px;
+    padding: 8px 0;
+  }
+
+  .ticker-item {
+    padding: 8px 12px;
+    font-size: 13px;
+    gap: 6px;
+    border-radius: 8px;
+    border-left-width: 4px;
+  }
+
+  .ticker-item:hover {
+    transform: scale(1.05) translateY(-2px);
+  }
+
+  .ticker-icon {
+    font-size: 16px;
+  }
+
+  .ticker-city {
+    font-size: 14px;
+  }
+
+  .ticker-aqi {
+    font-size: 13px;
+    padding: 3px 8px;
+  }
+
+  .ticker-status {
+    padding: 4px 10px;
+    font-size: 10px;
+    border-radius: 6px;
+  }
+
+  .ticker-separator {
+    margin: 0 3px;
+    font-size: 12px;
+  }
+
+  .ticker-info-bar {
+    flex-direction: row;
+    gap: 8px;
+    padding: 8px;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .info-item {
+    gap: 4px;
+  }
+
+  .info-label {
+    font-size: 10px;
+  }
+
+  .info-value {
+    font-size: 11px;
+  }
+
+  .info-divider {
+    height: 12px;
+  }
+
+  .loading-state {
+    padding: 24px 12px;
+  }
+
+  .ticker-content .loading-spinner {
+    width: 32px;
+    height: 32px;
+  }
+
+  .loading-state p {
+    font-size: 13px;
+    font-weight: 700;
+  }
+}
+    animation: scroll 45s linear infinite;
+  }
+
+  .ticker-item {
+    padding: 6px 10px;
+    font-size: 11px;
+    gap: 4px;
+    border-left-width: 3px;
+    border-radius: 8px;
+  }
+
+  .ticker-item:hover {
+    transform: scale(1.05) translateY(-2px);
+  }
+
+  .ticker-icon {
+    font-size: 13px;
+  }
+
+  .ticker-city {
+    font-size: 12px;
+  }
+
+  .ticker-aqi {
+    font-size: 11px;
+  }
+
+  .ticker-status {
+    padding: 3px 8px;
+    font-size: 10px;
+    border-radius: 10px;
+  }
+
+  .ticker-separator {
+    margin: 0 2px;
+    font-size: 10px;
+  }
+
+  .ticker-info-bar {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    margin: 0 8px 8px 8px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .info-item {
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    font-size: 10px;
+  }
+
+  .info-divider {
+    width: 100%;
+    height: 1px;
+    margin: 4px 0;
+  }
+
+  .info-label,
+  .info-value {
+    font-size: 10px;
+  }
+
+  .loading-state {
+    padding: 24px 12px;
+  }
+
+  .ticker-content .loading-spinner {
+    width: 32px;
+    height: 32px;
+  }
+
+  .loading-state p {
+    font-size: 13px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 320px) {
+  .alert-main {
+    font-size: 12px;
+  }
+
+  .city-name {
+    font-size: 13px;
+  }
+
+  .ticker-item {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .ticker-label {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+  }
+
+  .alert-icon {
+    font-size: 16px;
+  }
+
+  .ticker-icon {
+    font-size: 12px;
+  }
+}

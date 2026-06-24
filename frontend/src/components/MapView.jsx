@@ -24,8 +24,8 @@ export default function MapView() {
   return (
     <MapContainer center={[40.75, -73.97]} zoom={12} style={{ height: '500px', width: '100%' }}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {stations.map(s => (
-        <Marker key={s.id} position={[s.lat, s.lon]}>
+      {stations.map((s, idx) => (
+        <Marker key={s.id || idx} position={[s.lat, s.lon]}>
           <Popup>
             {s.name} - AQI {s.aqi}
           </Popup>

@@ -1,5 +1,25 @@
 # Pollution Tracker
 
+This repository contains a frontend (Vite + React) and a backend (Express + Mongoose) for tracking pollution data and user reports.
+
+Structure:
+- frontend/: React app built with Vite
+- backend/: Express server with Mongoose models
+
+To run locally:
+
+Frontend:
+1. cd frontend
+2. npm install
+3. npm run dev
+
+Backend:
+1. cd backend
+2. npm install
+3. Create a .env with MONGODB_URI if you want persistence
+4. npm start
+# Pollution Tracker
+
 This repository contains the Pollution Tracker project (frontend + backend).
 
 Structure:

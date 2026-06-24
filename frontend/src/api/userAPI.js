@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
+const API_BASE = import.meta.env.VITE_API_URL || '/api'
 
 export const userAPI = {
   // Register new user
@@ -9,8 +9,14 @@ export const userAPI = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password })
       })
-      if (!res.ok) throw new Error('Registration failed')
-      return res.json()
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        const msg = data?.error || data?.message || 'Registration failed'
+        const err = new Error(msg)
+        err.status = res.status
+        throw err
+      }
+      return data
     } catch (error) {
       console.error('Error registering user:', error)
       throw error
@@ -25,8 +31,14 @@ export const userAPI = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       })
-      if (!res.ok) throw new Error('Login failed')
-      return res.json()
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        const msg = data?.error || data?.message || 'Login failed'
+        const err = new Error(msg)
+        err.status = res.status
+        throw err
+      }
+      return data
     } catch (error) {
       console.error('Error logging in:', error)
       throw error

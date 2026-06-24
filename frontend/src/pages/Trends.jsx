@@ -72,7 +72,7 @@ export default function Trends() {
 
   // Chart data for historical AQI
   const chartData = {
-    labels: historicalData.map(d => new Date(d.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })),
+    labels: historicalData.map(d => new Date(d.created_at || d.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })),
     datasets: [
       {
         label: 'AQI',
@@ -137,12 +137,12 @@ export default function Trends() {
       {
         label: 'Average Concentration',
         data: [
-          historicalData.reduce((sum, d) => sum + d.pm25, 0) / historicalData.length,
-          historicalData.reduce((sum, d) => sum + d.pm10, 0) / historicalData.length,
-          historicalData.reduce((sum, d) => sum + d.no2, 0) / historicalData.length,
-          historicalData.reduce((sum, d) => sum + d.so2, 0) / historicalData.length,
-          historicalData.reduce((sum, d) => sum + d.co, 0) / historicalData.length,
-          historicalData.reduce((sum, d) => sum + d.o3, 0) / historicalData.length,
+          historicalData.reduce((sum, d) => sum + (parseFloat(d.pm25) || 0), 0) / historicalData.length,
+          historicalData.reduce((sum, d) => sum + (parseFloat(d.pm10) || 0), 0) / historicalData.length,
+          historicalData.reduce((sum, d) => sum + (parseFloat(d.no2) || 0), 0) / historicalData.length,
+          historicalData.reduce((sum, d) => sum + (parseFloat(d.so2) || 0), 0) / historicalData.length,
+          historicalData.reduce((sum, d) => sum + (parseFloat(d.co) || 0), 0) / historicalData.length,
+          historicalData.reduce((sum, d) => sum + (parseFloat(d.o3) || 0), 0) / historicalData.length,
         ],
         backgroundColor: [
           'rgba(239, 68, 68, 0.7)',

@@ -1,0 +1,23 @@
+node_modules/
+dist/
+
+# environment
+.env
+
+# editor
+.vscode/
+.DS_Store
+node_modules/
+
+# build output
+dist/
+
+# environment
+.env
+
+# editor
+.vscode/
+.DS_Store
+
+# logs
+*.log
